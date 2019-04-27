@@ -1,6 +1,10 @@
 package com.lucasmontano.fearsetting.onboard
 
 import androidx.lifecycle.*
+import com.google.firebase.remoteconfig.FirebaseRemoteConfig
+import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings
+import com.lucasmontano.fearsetting.BuildConfig
+import org.json.JSONObject
 
 class OnboardViewModel : ViewModel(), LifecycleObserver {
 
@@ -8,10 +12,27 @@ class OnboardViewModel : ViewModel(), LifecycleObserver {
   private val quote: MutableLiveData<String> = MutableLiveData()
   private val author: MutableLiveData<String> = MutableLiveData()
 
+  private val firebaseRemoteConfig = FirebaseRemoteConfig.getInstance()
+
+  init {
+    if (BuildConfig.DEBUG) {
+      val configSettings = FirebaseRemoteConfigSettings.Builder()
+        .setDeveloperModeEnabled(BuildConfig.DEBUG)
+        .setMinimumFetchIntervalInSeconds(3600)
+        .build()
+      firebaseRemoteConfig.setConfigSettings(configSettings)
+    }
+  }
+
   fun initData() {
-    illustrationUrl.value = "https://www.pensarcontemporaneo.com/content/uploads/2018/03/Seneca.jpeg"
-    quote.value = "\"We suffer more often in imagination than in reality.\""
-    author.value = "– Seneca"
+    firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener {
+      if (it.isSuccessful) {
+        val onboardJSon = JSONObject(firebaseRemoteConfig.getString("onboard"))
+        illustrationUrl.value = onboardJSon.getString("illustration")
+        quote.value = onboardJSon.getString("quote")
+        author.value = onboardJSon.getString("author")
+      }
+    }
   }
 
   fun observeIllustrationUrl(
