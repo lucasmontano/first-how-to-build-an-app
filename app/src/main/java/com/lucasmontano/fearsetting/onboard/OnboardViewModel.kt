@@ -24,7 +24,8 @@ class OnboardViewModel : ViewModel(), LifecycleObserver {
     }
   }
 
-  fun initData() {
+  @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+  fun onCreate() {
     firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener {
       if (it.isSuccessful) {
         val onboardJSon = JSONObject(firebaseRemoteConfig.getString("onboard"))

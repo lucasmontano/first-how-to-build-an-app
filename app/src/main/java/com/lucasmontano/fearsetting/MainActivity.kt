@@ -18,9 +18,14 @@ class MainActivity : AppCompatActivity() {
 
     onboardViewModel = ViewModelProviders.of(this).get(OnboardViewModel::class.java)
 
-    observeOnboardContent()
+    lifecycle.addObserver(onboardViewModel)
 
-    onboardViewModel.initData()
+    observeOnboardContent()
+  }
+
+  override fun onDestroy() {
+    lifecycle.removeObserver(onboardViewModel)
+    super.onDestroy()
   }
 
   private fun observeOnboardContent() {
