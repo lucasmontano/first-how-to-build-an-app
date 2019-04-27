@@ -7,5 +7,17 @@ http://bit.ly/first-how-to-build-an-app
 ## Wireframe
 https://github.com/lucasmontano/first-how-to-build-an-app/blob/master/wireframe-v1.0.0-beta.JPG
 
-## Definição da base de dados
+## Database Definition
 https://youtu.be/e5j8l1TCHZY
+
+# How to setup your project
+
+## FirebaseRemoteConfig
+Add new parameter with key **onboard** and the following JSON value:
+```
+{
+  "illustration": "https://www.pensarcontemporaneo.com/content/uploads/2018/03/Seneca.jpeg",
+  "quote": "\"We suffer more often in imagination than in reality\"",
+  "author": "– Seneca"
+}
+```
