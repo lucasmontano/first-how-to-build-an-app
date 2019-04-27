@@ -28,10 +28,13 @@ class OnboardViewModel : ViewModel(), LifecycleObserver {
   fun onCreate() {
     firebaseRemoteConfig.fetchAndActivate().addOnCompleteListener {
       if (it.isSuccessful) {
-        val onboardJSon = JSONObject(firebaseRemoteConfig.getString("onboard"))
-        illustrationUrl.value = onboardJSon.getString("illustration")
-        quote.value = onboardJSon.getString("quote")
-        author.value = onboardJSon.getString("author")
+        val onboardData = firebaseRemoteConfig.getString("onboard")
+        if (onboardData.isNotEmpty()) {
+          val onboardJSon = JSONObject(onboardData)
+          illustrationUrl.value = onboardJSon.getString("illustration")
+          quote.value = onboardJSon.getString("quote")
+          author.value = onboardJSon.getString("author")
+        }
       }
     }
   }
