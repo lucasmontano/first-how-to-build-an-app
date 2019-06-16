@@ -1,12 +1,51 @@
 <resources>
 
   <!-- Base application theme. -->
-  <style name="AppTheme"
-         parent="Theme.AppCompat.Light.DarkActionBar">
-    <!-- Customize your theme here. -->
-    <item name="colorPrimary">@color/colorPrimary</item>
-    <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-    <item name="colorAccent">@color/colorAccent</item>
+  <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+
+    <!-- Original AppCompat attributes. -->
+    <item name="colorPrimary">@color/primary_color</item>
+    <item name="colorSecondary">@color/secondary_color</item>
+    <item name="colorError">@color/error_color</item>
+
+    <!-- New MaterialComponents attributes. -->
+    <item name="colorPrimaryVariant">@color/primary_variant_color</item>
+    <item name="colorSecondaryVariant">@color/secondary_variant_color</item>
+    <item name="colorSurface">@color/surface_color</item>
+    <item name="colorOnPrimary">@color/color_on_primary</item>
+    <item name="colorOnSecondary">@color/color_on_secondary</item>
+    <item name="colorOnError">@color/color_on_error</item>
+    <item name="colorOnSurface">@color/color_on_surface</item>
+
+    <item name="toolbarStyle">@style/Widget.MaterialComponents.Toolbar.Primary</item>
+    <item name="android:statusBarColor">@color/primary_variant_color</item>
+
+    <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.SmallComponent</item>
+    <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.MediumComponent</item>
+    <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.LargeComponent</item>
+
+    <item name="materialButtonStyle">@style/AppTheme.Button</item>
+
+  </style>
+
+  <style name="AppTheme.Button" parent="Widget.MaterialComponents.Button">
+    <item name="backgroundTint">@color/secondary_color</item>
+    <item name="android:textColor">@color/color_on_secondary</item>
+  </style>
+
+  <style name="ShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+    <item name="cornerFamily">cut</item>
+    <item name="cornerSize">4dp</item>
+  </style>
+
+  <style name="ShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+    <item name="cornerFamily">cut</item>
+    <item name="cornerSize">8dp</item>
+  </style>
+
+  <style name="ShapeAppearance.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">4dp</item>
   </style>
 
 </resources>
